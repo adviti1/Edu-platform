@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+
+  
+  <main>
+  
+  
+    <div class="album py-5 bg-light">
+      <div class="container">
+
+        {% if success_message %}
+          <div class="alert  alert-success" role="alert">
+            {{ success_message }}
+          </div>
+        {% endif %}
+  
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          {% for course in courses_list %}
+          <div class="col">
+            <div class="card shadow-sm">
+              <img src="{{ course.course.banner.url }}" class="bd-placeholder-img card-img-top" width="100%" height="225" alt="{{ course.course.title }}">
+              <div class="card-body">
+                <p class="card-text">{{ course.course.title }}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <a href="{% url 'lessons' course.course.slug %}" type="button" class="btn btn-sm btn-outline-secondary">Continuar</a>
+                  </div>
+                  <small class="text-muted">0 %</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  
+  </main>
+  
+  <footer class="text-muted py-5">
+    <div class="container">
+      <p class="float-end mb-1">
+        <a href="#">Back to top</a>
+      </p>
+      <p class="mb-1">Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
+      <p class="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a href="/docs/5.0/getting-started/introduction/">getting started guide</a>.</p>
+    </div>
+  </footer>
+
+{% endblock %}
